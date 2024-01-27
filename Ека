@@ -1,0 +1,37 @@
+function createElement(element) {
+    const div = document.createElement('div');
+    const title = document.createElement('p');
+    const dscrptn = document.createElement('p');
+    const price = document.createElement('p');
+    const category = document.createElement('p');
+    const image = document.createElement('div');
+    const button = document.createElement('button');
+
+    title.append(truncate(element.title, 20));
+    dscrptn.append(truncate(element.description, 100));
+    category.append('category: ');
+    category.append(element.category);
+    price.append('price: ');
+    price.append(element.price);
+    image.style.backgroundImage = `url(${element.image})`;
+    button.innerText = 'Toggle Description';
+    button.addEventListener('click', () => {
+        dscrptn.classList.toggle('hidden');
+    });
+
+    div.append(title);
+    div.append(image);
+    div.append(price);
+    div.append(dscrptn);
+    div.append(category);
+    div.append(button);
+
+    root.append(div);
+
+    image.classList.add('img');
+    title.classList.add('text');
+    dscrptn.classList.add('text', 'hidden'); // Initially hide description
+    price.classList.add('priceNcategory');
+    category.classList.add('priceNcategory');
+    div.classList.add('card');
+}
